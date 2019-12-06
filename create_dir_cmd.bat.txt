@@ -1,0 +1,2 @@
+@echo off
+for /F "tokens=*" %%A in (table_of_content.txt) do mkdir "%%A"

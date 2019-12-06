@@ -1,0 +1,7 @@
+1.Course Overview
+2.Overview of Behavior-driven Development and Cucumber
+3.Building a Shared Understanding_BDD Requirements Discovery
+4.Your First Cucumber JVM Project
+5.Introduction to the Gherkin Language_The Given-When-Then Notation
+6.Glue Code_Automating Scenarios
+7.Producing Living Documentation Reports with Cucumber and Serenity BDD
