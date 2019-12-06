@@ -7,8 +7,38 @@ function openFileSrc(playerId)
 openFileSrc('vjs_video_368_html5_api')
 
 
+// current selected vid will have this class .ps-color-orange
+// prefix could be the idx
+function currentVidName_lynd(prefix=''){
+   //return prefix + $('.ps-color-orange > h3').textContent + ".mp4";
+   return prefix + getCurrentVidName_lynd() + ".mp4";
+}
+
+function getCurrentVidName_lynd()
+{
+    var clName = '.video-item__link.t-black.active.ember-view';
+	var selStr = clName + ' > div:nth-child(1) > div:nth-child(2)';
+	var el = $(selStr);
+	if(!el){
+	    console.log('Not found element. Return');
+	}
+	else {
+	    var rawText = el.text();
+	    console.log(rawText);
+		return rawText.split(' ')[0];
+	}
+}
+
 function download(url, filename) {
-	fetch(url).then(function(t) {
+    var myHeaders = new Headers();
+	myHeaders.append('Access-Control-Allow-Origin', '*'); 
+	
+	var options = {
+        headers: myHeaders,
+		mode: 'no-cors'
+    };
+	
+	fetch(url,options).then(function(t) {
 		return t.blob().then((b)=>{
 			var a = document.createElement("a");
 			a.href = URL.createObjectURL(b);
@@ -19,14 +49,10 @@ function download(url, filename) {
 	});
 }
 
-// current selected vid will have this class .ps-color-orange
-// prefix could be the idx
-function currentVidName(prefix=''){
-   return prefix + $('.ps-color-orange > h3').textContent + ".mp4";
-}
+//window.open(document.getElementsByTagName("video")[0].src, '_blank');
 
-Ex:
-download(document.getElementsByTagName("video")[0].src,currentVidName('1.'))
+//Ex:
+download(document.getElementsByTagName("video")[0].src,currentVidName_lynd('1.'))
 download($('#vjs_video_368_html5_api').src,"some name.mp4")
 download("https://get.geojs.io/v1/ip/geo.json","geoip.json")
 download("data:text/html,HelloWorld!", "helloWorld.txt");
